@@ -6,8 +6,11 @@ public class Player {
     private String charName;
 
     public void selectChar(){
+        GameChar[] charList = {new Samurai(), new Knight(), new Archer()};
         System.out.println("-----------------------------------------------------------");
-        System.out.println("Karakter : Samuray \t Hasar : 5 \t Sağlık : 21 \t Para : 15");
+        for (GameChar gameChar : charList) {
+            System.out.println("Karakter :"+gameChar.getName()+ "\t Hasar :"+gameChar.getDamage()+"\t Sağlık :"+gameChar.getHealth()+"\t Para :"+gameChar.getMoney());
+        }
     }
     public Player(String name) {
         this.name = name;
