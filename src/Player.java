@@ -45,6 +45,7 @@ public class Player {
         this.setMoney(gameChar.getMoney());
         this.setCharName(gameChar.getName());
     }
+
     public Player(String name) {
         this.name = name;
     }
