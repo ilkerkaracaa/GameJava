@@ -33,6 +33,23 @@ public class ToolStore extends NormalLoc{
         for (Weapon w : Weapon.weapons()) {
             System.out.println("Id : \t" +w.getId() + "\tSilah Adı : " + w.getName() + "\tHasar : " + w.getDamage() + "\tFiyat : " + w.getPrice());
         }
+        System.out.print("Silah seçiniz : ");
+        int selectWeaponID = input.nextInt();
+        while (selectWeaponID < 1 && selectWeaponID > Weapon.weapons().length){
+            System.out.print("Geçersiz bir seçim yaptınız!\n Lütfen yeni bir seçim yapınız : ");
+            selectWeaponID = input.nextInt();
+        }
+        Weapon selectedWeapon = Weapon.getWeaponObjByID(selectWeaponID);
+        if(selectedWeapon != null){
+            if(selectedWeapon.getPrice() > this.getPlayer().getMoney()){
+                System.out.println("Yeterli paranız bulunmamaktadır!");
+            }else {
+                System.out.println(selectedWeapon.getName() + " silahını satın aldınız!");
+                int balance = this.getPlayer().getMoney() - selectedWeapon.getPrice();
+                this.getPlayer().setMoney(balance);
+                System.out.println("Kalan paranız : " + this.getPlayer().getMoney());
+            }
+        }
     }
     public void printArmors(){
         System.out.println("Silahlar");
