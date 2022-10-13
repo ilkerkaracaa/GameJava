@@ -7,6 +7,8 @@ public class Player {
     private String name;
     private String charName;
 
+    private Inventory inventory;
+
     private Scanner input = new Scanner(System.in);
 
     public void selectChar(){
@@ -36,7 +38,7 @@ public class Player {
             default:
                 System.out.println("Hata");
         }
-        System.out.println("Karakter : " + this.getCharName() + " \nHasar : " + this.getDamage() + " \nSağlık : " + this.getHealth() + " \nPara : " + getMoney());
+        //System.out.println("Karakter : " + this.getCharName() + " \nHasar : " + this.getDamage() + " \nSağlık : " + this.getHealth() + " \nPara : " + getMoney());
     }
 
     public void initPlayer(GameChar gameChar){
@@ -48,10 +50,20 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        this.inventory = new Inventory();
+    }
+
+    public void printPlayerInfo(){
+        System.out.println(
+                        "Silahınız : " +this.getInventory().getWeapon().getName() +
+                        ", Hasarınız : " + this.getDamage() +
+                        ", Sağlık : " + this.getHealth() +
+                        ", Para : " + getMoney());
+
     }
 
     public int getDamage() {
-        return damage;
+        return damage + this.getInventory().getWeapon().getDamage();
     }
 
     public void setDamage(int damage) {
@@ -88,5 +100,13 @@ public class Player {
 
     public void setCharName(String charName) {
         this.charName = charName;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 }

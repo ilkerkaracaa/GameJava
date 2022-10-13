@@ -12,6 +12,7 @@ public class Game {
         player.selectChar();
         Location location = null;
         while (true){
+            player.printPlayerInfo();
             System.out.println("Bölgeler");
             System.out.println("1 - Güvenli Ev");
             System.out.println("2 - Mağaza");

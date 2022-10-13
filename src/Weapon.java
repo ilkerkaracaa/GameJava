@@ -13,7 +13,7 @@ public class Weapon {
 
     public static Weapon[] weapons(){
         Weapon[] weaponList  = new Weapon[3];
-        weaponList[0] = new Weapon(1,"Tabanca",2,25);
+        weaponList[0] = new Weapon(1,"Tabanca",2,5);
         weaponList[1] = new Weapon(2,"Kılıç",3,35);
         weaponList[2] = new Weapon(3,"Tüfek",7,45);
         return weaponList;
