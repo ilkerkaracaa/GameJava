@@ -15,8 +15,12 @@ public class Game {
             player.printPlayerInfo();
             System.out.println("Bölgeler");
             System.out.println("1 - Güvenli Ev");
-            System.out.println("2 - Mağaza");
-            System.out.println("Lütfen gitmek istediğiniz bölgeyi seçin : ");
+            System.out.println("2 - Eşya Dükkanı");
+            System.out.println("3 - Mağara");
+            System.out.println("4 - Orman");
+            System.out.println("5 - Nehir");
+            System.out.println("6 - Oyundan Çık");
+            System.out.print("Lütfen gitmek istediğiniz bölümü seçin : ");
             int selectLoc = input.nextInt();
             switch (selectLoc){
                 case 1:
@@ -25,6 +29,17 @@ public class Game {
                 case 2:
                     location = new ToolStore(player);
                     break;
+                case 3:
+                    location = new Cave(player);
+                    break;
+                case 4:
+                    location = new Forest(player);
+                    break;
+                case 5:
+                    location = new River(player);
+                case 6:
+                    System.out.println("Tekrar Görüşürüz!");
+                    return;
                 default:
                     System.out.println("Hata");
             }
