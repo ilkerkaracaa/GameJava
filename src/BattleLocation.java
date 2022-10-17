@@ -18,16 +18,22 @@ public abstract class BattleLocation extends Location{
         System.out.print("<S>avaş veya <K>aç! : ");
         String selectCase = input.nextLine();
         selectCase = selectCase.toUpperCase();
-        if (selectCase.equals("S")){
-
+        if (selectCase.equals("S") && combat(this.randomMonsterNumber())) {
+            System.out.println(this.getName() + " tüm düşmanları yendiniz!");
+            return true;
         }
+            if (this.getPlayer().getHealth() < 0){
+                System.out.println("Öldünüz!");
+                return false;
+            }
         return true;
     }
 
     public boolean combat(int monsNumber){
         for (int i = 0; i < monsNumber; i++){
+            this.getMonster().setHealth(this.getMonster().getBaseHealth());
             playerStats();
-            monsterStats();
+            monsterStats(i);
             while (this.getPlayer().getHealth() > 0 && this.getMonster().getHealth() > 0 ){
                 System.out.print("<V>ur veya <K>aç : ");
                 String selectCombat = input.nextLine().toUpperCase();
@@ -44,10 +50,20 @@ public abstract class BattleLocation extends Location{
                         this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterDamage);
                         afterHit();
                     }
+                }else {
+                    return false;
                 }
             }
+            if(this.getMonster().getHealth() < this.getPlayer().getHealth()){
+                System.out.println("Düşmanı Yendin!");
+                System.out.println(this.getMonster().getAward() + " para kazandınız!");
+                this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getMonster().getAward());
+                System.out.println("Güncel Paranız : " + this.getPlayer().getMoney());
+            }else {
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 
     public void afterHit(){
@@ -66,8 +82,8 @@ public abstract class BattleLocation extends Location{
         System.out.println("Para : " + this.getPlayer().getMoney());
     }
 
-    public void monsterStats(){
-        System.out.println(this.getMonster().getName() + "nın Değerleri");
+    public void monsterStats(int i){
+        System.out.println((i+1) + ". " + this.getMonster().getName() + "nın Değerleri");
         System.out.println("-------------------------------");
         System.out.println("Sağlık : " + this.getMonster().getHealth());
         System.out.println("Hasar : " + this.getMonster().getDamage());
