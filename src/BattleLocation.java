@@ -52,6 +52,27 @@ public abstract class BattleLocation extends Location{
             this.getMonster().setHealth(this.getMonster().getBaseHealth());
             playerStats();
             monsterStats(i);
+            Random  random = new Random();
+            int chance = random.nextInt(100)+1;
+            if(chance < 51){
+                System.out.print("<V>ur veya <K>aç : ");
+                String selectCombat = input.nextLine().toUpperCase();
+                if(selectCombat.equals("V")) {
+                    System.out.println("Siz Vurdunuz!");
+                    this.getMonster().setHealth(this.getMonster().getHealth() - this.getPlayer().getTotalDamage());
+                    afterHit();
+                }
+            }else {
+                if(this.getMonster().getHealth() > 0) {
+                    System.out.println("Canavar Size Vurdu!");
+                    int monsterDamage = this.getMonster().getDamage() - this.getPlayer().getInventory().getArmor().getBlock();
+                    if (monsterDamage < 0) {
+                        monsterDamage = 0;
+                    }
+                    this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterDamage);
+                    afterHit();
+                }
+            }
             while (this.getPlayer().getHealth() > 0 && this.getMonster().getHealth() > 0 ){
                 System.out.print("<V>ur veya <K>aç : ");
                 String selectCombat = input.nextLine().toUpperCase();
