@@ -1,4 +1,4 @@
-##AdventureGame
+## AdventureGame
 - Choose your character
 - Finish the game by collecting Food from Cave, Wood from Forest and Water from River.
 - Remember, monsters are waiting for you there.
