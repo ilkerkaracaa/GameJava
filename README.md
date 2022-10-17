@@ -5,4 +5,5 @@
 - You can go to the Safe House to recharge.
 - You can fill your Inventory from the Store to get stronger If you have enough money :)
 - Hang out in the Mine and get Power to earn money, Random items and pass the Main venues!!
-@https://app.patika.dev/courses/java-102/advgame-1
+### Source
+- https://app.patika.dev/courses/java-102/advgame-1
