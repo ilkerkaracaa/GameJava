@@ -19,10 +19,59 @@ public abstract class BattleLocation extends Location{
         String selectCase = input.nextLine();
         selectCase = selectCase.toUpperCase();
         if (selectCase.equals("S")){
-            System.out.println("Savaşşşşş");
-            //Savaş Alanı
+
         }
         return true;
+    }
+
+    public boolean combat(int monsNumber){
+        for (int i = 0; i < monsNumber; i++){
+            playerStats();
+            monsterStats();
+            while (this.getPlayer().getHealth() > 0 && this.getMonster().getHealth() > 0 ){
+                System.out.print("<V>ur veya <K>aç : ");
+                String selectCombat = input.nextLine().toUpperCase();
+                if(selectCombat.equals("V")){
+                    System.out.println("Siz Vurdunuz!");
+                    this.getMonster().setHealth(this.getMonster().getHealth() - this.getPlayer().getTotalDamage());
+                    afterHit();
+                    if(this.getMonster().getHealth() > 0){
+                        System.out.println("Canavar Size Vurdu!");
+                        int monsterDamage = this.getMonster().getDamage() - this.getPlayer().getInventory().getArmor().getBlock();
+                        if(monsterDamage < 0){
+                            monsterDamage = 0;
+                        }
+                        this.getPlayer().setHealth(this.getPlayer().getHealth() - monsterDamage);
+                        afterHit();
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void afterHit(){
+        System.out.println("Canınız : " + this.getPlayer().getHealth());
+        System.out.println(this.getMonster().getName() + " Canı : " + this.getMonster().getHealth());
+    }
+
+    public void playerStats(){
+        System.out.println("Oyuncunun Durumu");
+        System.out.println("-------------------------------");
+        System.out.println("Sağlık : " + this.getPlayer().getHealth());
+        System.out.println("Silah : " + this.getPlayer().getInventory().getWeapon().getName());
+        System.out.println("Zırh : " + this.getPlayer().getInventory().getArmor().getName());
+        System.out.println("Bloklama : " + this.getPlayer().getInventory().getArmor().getBlock());
+        System.out.println("Hasar : " + this.getPlayer().getTotalDamage());
+        System.out.println("Para : " + this.getPlayer().getMoney());
+    }
+
+    public void monsterStats(){
+        System.out.println(this.getMonster().getName() + "nın Değerleri");
+        System.out.println("-------------------------------");
+        System.out.println("Sağlık : " + this.getMonster().getHealth());
+        System.out.println("Hasar : " + this.getMonster().getDamage());
+        System.out.println("Ödül : " + this.getMonster().getAward());
     }
 
     public int randomMonsterNumber(){

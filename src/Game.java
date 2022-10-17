@@ -37,6 +37,7 @@ public class Game {
                     break;
                 case 5:
                     location = new River(player);
+                    break;
                 case 6:
                     System.out.println("Tekrar Görüşürüz!");
                     return;
