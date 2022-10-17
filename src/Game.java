@@ -19,7 +19,8 @@ public class Game {
             System.out.println("3 - Mağara");
             System.out.println("4 - Orman");
             System.out.println("5 - Nehir");
-            System.out.println("6 - Oyundan Çık");
+            System.out.println("6 - Maden");
+            System.out.println("7 - Oyundan Çık");
             System.out.print("Lütfen gitmek istediğiniz bölümü seçin : ");
             int selectLoc = input.nextInt();
             switch (selectLoc){
@@ -39,6 +40,9 @@ public class Game {
                     location = new River(player);
                     break;
                 case 6:
+                    location = new Coal(player);
+                    break;
+                case 7:
                     System.out.println("Tekrar Görüşürüz!");
                     return;
                 default:

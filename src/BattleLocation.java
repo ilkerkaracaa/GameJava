@@ -95,9 +95,55 @@ public abstract class BattleLocation extends Location{
             }
             if(this.getMonster().getHealth() < this.getPlayer().getHealth()){
                 System.out.println("Düşmanı Yendin!");
-                System.out.println(this.getMonster().getAward() + " para kazandınız!");
-                this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getMonster().getAward());
-                System.out.println("Güncel Paranız : " + this.getPlayer().getMoney());
+                if(this.getMonster().getName().equals("Yılan")){
+                   int rand = random.nextInt(100)+1;
+                    if(rand < 45){
+                        System.out.println("Üzgünüm Yılandan hiçbir item düşmedi :(");
+                    }else if(rand > 45 && rand < 60){
+                        if (rand < 49){
+                            System.out.println("Tüfek Kazandınız");
+                            Weapon selectedWeapon = Weapon.getWeaponObjByID(3);
+                            this.getPlayer().getInventory().setWeapon(selectedWeapon);
+                        } else if (rand > 49 && rand < 54) {
+                            System.out.println("Kılıç Kazandınız");
+                            Weapon selectedWeapon = Weapon.getWeaponObjByID(2);
+                            this.getPlayer().getInventory().setWeapon(selectedWeapon);
+                        } else if (rand > 54 && rand < 60) {
+                            System.out.println("Tabanca Kazandınız");
+                            Weapon selectedWeapon = Weapon.getWeaponObjByID(1);
+                            this.getPlayer().getInventory().setWeapon(selectedWeapon);
+                        }
+                    } else if (rand > 60 && rand < 75) {
+                        if (rand < 64){
+                            System.out.println("Ağır Zırh Kazandınız");
+                            Armor selectedArmor = Armor.getArmornObjByID(3);
+                            this.getPlayer().getInventory().setArmor(selectedArmor);
+                        } else if (rand > 64 && rand < 69) {
+                            System.out.println("Orta Zırh Kazandınız");
+                            Armor selectedArmor = Armor.getArmornObjByID(2);
+                            this.getPlayer().getInventory().setArmor(selectedArmor);
+                        } else if (rand > 69 && rand < 75) {
+                            System.out.println("Hafif Zırh Kazandınız");
+                            Armor selectedArmor = Armor.getArmornObjByID(1);
+                            this.getPlayer().getInventory().setArmor(selectedArmor);
+                        }
+                    } else if (rand > 75 && rand < 100) {
+                        if(rand < 80){
+                            System.out.println("10 Para Kazandınız!");
+                            this.getPlayer().setMoney(this.getPlayer().getMoney() + 10);
+                        } else if (rand > 80 && rand < 88) {
+                            System.out.println("5 Para Kazandınız!");
+                            this.getPlayer().setMoney(this.getPlayer().getMoney() + 5);
+                        }else {
+                            System.out.println("1 Para Kazandınız!");
+                            this.getPlayer().setMoney(this.getPlayer().getMoney() + 1);
+                        }
+                    }
+                }else {
+                    System.out.println(this.getMonster().getAward() + " para kazandınız!");
+                    this.getPlayer().setMoney(this.getPlayer().getMoney() + this.getMonster().getAward());
+                    System.out.println("Güncel Paranız : " + this.getPlayer().getMoney());
+                }
             }else {
                 return false;
             }
