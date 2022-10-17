@@ -13,6 +13,17 @@ public abstract class BattleLocation extends Location{
 
     @Override
     public boolean onLocation() {
+        if (this.getMonster().getName().equals("Zombi") && this.getPlayer().isCaveFinish() == true){
+            System.out.println("Bu Bölümü Tamamladınız!");
+            return true;
+        }else if (this.getMonster().getName().equals("Vampir") && this.getPlayer().isForestFinish() == true){
+            System.out.println("Bu Bölümü Tamamladınız!");
+            return true;
+        }else if (this.getMonster().getName().equals("Ayı") && this.getPlayer().isRiverFinish() == true){
+            System.out.println("Bu Bölümü Tamamladınız!");
+            return true;
+        }
+
         System.out.println("Şu an buradasınız : " + this.getName());
         System.out.println("Dikkatli Ol! Burada " + this.randomMonsterNumber() + " tane " + this.getMonster().getName() + " yaşıyor!");
         System.out.print("<S>avaş veya <K>aç! : ");
@@ -20,6 +31,13 @@ public abstract class BattleLocation extends Location{
         selectCase = selectCase.toUpperCase();
         if (selectCase.equals("S") && combat(this.randomMonsterNumber())) {
             System.out.println(this.getName() + " tüm düşmanları yendiniz!");
+            if (this.getMonster().getName().equals("Zombi")){
+                this.getPlayer().setCaveFinish(true);
+            }else if (this.getMonster().getName().equals("Vampir")){
+                this.getPlayer().setForestFinish(true);
+            }else if (this.getMonster().getName().equals("Ayı")){
+                this.getPlayer().setRiverFinish(true);
+            }
             return true;
         }
             if (this.getPlayer().getHealth() < 0){

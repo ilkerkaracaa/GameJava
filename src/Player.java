@@ -7,6 +7,9 @@ public class Player {
     private int money;
     private String name;
     private String charName;
+    private boolean forestFinish = false;
+    private boolean riverFinish = false;
+    private boolean caveFinish = false;
 
     private Inventory inventory;
 
@@ -127,5 +130,29 @@ public class Player {
 
     public void setBaseHealth(int baseHealth) {
         this.baseHealth = baseHealth;
+    }
+
+    public boolean isForestFinish() {
+        return forestFinish;
+    }
+
+    public void setForestFinish(boolean forestFinish) {
+        this.forestFinish = forestFinish;
+    }
+
+    public boolean isRiverFinish() {
+        return riverFinish;
+    }
+
+    public void setRiverFinish(boolean riverFinish) {
+        this.riverFinish = riverFinish;
+    }
+
+    public boolean isCaveFinish() {
+        return caveFinish;
+    }
+
+    public void setCaveFinish(boolean caveFinish) {
+        this.caveFinish = caveFinish;
     }
 }
